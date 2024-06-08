@@ -19,6 +19,8 @@ jobs:
         run: |
           npm install
           npm run build
+          pm2 start
+          sleep 5 # Wait for PM2 to start
           pm2 stop 0
           pm2 start 0
           pm2 save
