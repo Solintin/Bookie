@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p tsconfig.json --outDir build",
     "dev": "nodemon --watch src --exec 'ts-node' src/index.ts",
+    "start": "node build/index.js",
     "typeorm": "typeorm-ts-node-commonjs -d src/database/data-source.ts",
     "migration:generate": "yarn typeorm migration:generate",
     "migration:show": "yarn typeorm migration:show",

@@ -13,6 +13,12 @@ const app: Express = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get("/ping", (req, res) => {
+  res.status(200).json({
+    message: "Hello World, Bookie App is Here",
+  });
+});
 app.use("/authors", authorRoute);
 
 app.use("*", (_, res: Response) => {
