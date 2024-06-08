@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print Username
-        run: echo "Username: $(whoami)"
+        run: echo "Username: $GITHUB_ACTOR"
 
   build-and-deploy:
     runs-on: self-hosted
