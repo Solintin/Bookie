@@ -1,4 +1,4 @@
-name: Print Username
+name: Deploy to Azure Vm
 
 on:
   push:
@@ -11,3 +11,23 @@ jobs:
     steps:
       - name: Print Username
         run: echo "Username: $(whoami)"
+
+  build-and-deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v3
+      - name: Setup Node.js version
+        uses: actions/setup-node@v4
+        with:
+          node-version: "16.x"
+      - name: Install Dependencies
+        run: |
+          npm install
+          npm run build
+          pm2 start
+          sleep 5 # Wait for PM2 to start
+          pm2 stop 0
+          pm2 start 0
+          pm2 save
+          sudo systemctl restart nginx
