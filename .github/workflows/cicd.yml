@@ -6,12 +6,6 @@ on:
       - master
 
 jobs:
-  print-username:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print Username
-        run: echo "Username: $GITHUB_ACTOR"
-
   build-and-deploy:
     runs-on: self-hosted
     steps:
