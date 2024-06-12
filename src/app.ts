@@ -23,7 +23,7 @@ app.get("/hello", (req, res) => {
 app.use("*", (_, res: Response) => {
   return res.status(StatusCodes.NOT_FOUND).json({
     success: false,
-    message: "Route not found",
+    message: "Route not found, get Out",
   });
 });
 app.use((err, req, res, next) => {
