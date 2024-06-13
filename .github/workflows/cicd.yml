@@ -24,4 +24,4 @@ jobs:
           pm2 stop 1
           pm2 start 1
           pm2 save
-          # echo secrets.SUDO_PASSWORD | sudo -S sudo systemctl restart nginx
+          echo secrets.SUDO_PASSWORD | sudo -S sudo systemctl restart nginx
