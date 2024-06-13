@@ -10,7 +10,6 @@ export class AuthorController {
     const authors = await AppDataSource.getRepository(Author)
       .createQueryBuilder()
       .orderBy("id", "ASC");
-    console.log(authors);
     const { records, paginationInfo } = await Paginator.paginate(authors, req);
 
     return ResponsePayload.sendSuccess<Author>(
