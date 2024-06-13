@@ -7,6 +7,8 @@ import { StatusCodes } from "http-status-codes";
 import { EntityNotFoundError } from "typeorm";
 import { ResponsePayload } from "./middleware/response";
 import multer from "multer";
+import { AuthorController } from "./controllers/authors.controller";
+const authorController = new AuthorController();
 
 const app: Express = express();
 
@@ -15,11 +17,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/authors", authorRoute);
-app.get("/hello", (req, res) => {
-  res.status(200).json({
-    message: "Hello World, Bookie App is Here",
-  });
-});
+app.get("/", authorController.getAuthors);
 app.use("*", (_, res: Response) => {
   return res.status(StatusCodes.NOT_FOUND).json({
     success: false,

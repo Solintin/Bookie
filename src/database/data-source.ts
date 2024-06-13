@@ -11,6 +11,9 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_DATABASE || "bookie",
   logging: true,
   synchronize: false,
+  ssl: {
+    rejectUnauthorized: true,
+  },
   subscribers: [],
   entities: ["src/**/entities/*.ts"],
   migrations: ["src/database/migrations/*.ts"],
