@@ -24,7 +24,7 @@ export class FileUploader {
         );
       },
     });
-    const fileFilter = (req, file, cb) => {
+    const fileFilter = (req: any, file: any, cb: any) => {
       if (fileTypes.includes(file.mimetype)) {
         cb(null, true);
       } else {

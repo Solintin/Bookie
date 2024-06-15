@@ -1,5 +1,5 @@
 export class Paginator {
-  static async paginate(querybuilder, req) {
+  static async paginate(querybuilder: any, req: any) {
     const page = Number(req.query.page) || 1;
     const pageSize = Number(req.query.pageSize) || 10;
     const offset = (page - 1) * pageSize;

@@ -11,14 +11,14 @@ import { AUTHORS } from "../constant";
 @Entity(AUTHORS)
 export class Author extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column({
     nullable: true,
     type: "varchar",
     length: "255",
   })
-  name: string;
+  name!: string;
 
   @Column({
     nullable: false,
@@ -26,25 +26,25 @@ export class Author extends BaseEntity {
     type: "varchar",
     length: "255",
   })
-  email: string;
+  email!: string;
 
   @Column({
     nullable: true,
     type: "varchar",
     length: "255",
   })
-  bio: string;
+  bio!: string;
 
   @Column({
     nullable: true,
     type: "varchar",
     length: "255",
   })
-  image: string;
+  image!: string;
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
 }

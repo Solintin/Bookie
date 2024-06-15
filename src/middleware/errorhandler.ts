@@ -4,7 +4,7 @@ import { ResponsePayload } from "./response";
 import { StatusCodes } from "http-status-codes";
 
 export class ErrorHandler {
-  static handleError(fn) {
+  static handleError(fn: any) {
     return (req: Request, res: Response, next: NextFunction) => {
       Promise.resolve(fn(req, res, next).catch(next));
     };

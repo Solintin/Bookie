@@ -1,5 +1,4 @@
 import express, { Express, NextFunction, Request, Response } from "express";
-
 import authorRoute from "./routes/authors";
 import bodyParser from "body-parser";
 import cors from "cors";
@@ -24,7 +23,7 @@ app.use("*", (_, res: Response) => {
     message: "Route not found, get out of here",
   });
 });
-app.use((err, req, res, next) => {
+app.use((err: any, req: any, res: any, next: any) => {
   if (
     err instanceof multer.MulterError ||
     err.message === "Invalid file type. Only JPEG and PNG images are allowed."
