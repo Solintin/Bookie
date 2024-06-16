@@ -25,7 +25,7 @@ app.get("/", (_, res: Response) => {
 app.use("*", (_, res: Response) => {
   return res.status(StatusCodes.NOT_FOUND).json({
     success: false,
-    message: "Route not found, get out of here",
+    message: "Route not found, get out of here.",
   });
 });
 app.use((err: any, req: any, res: any, next: any) => {
