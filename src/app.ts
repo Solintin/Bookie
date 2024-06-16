@@ -22,6 +22,12 @@ app.get("/", (_, res: Response) => {
     message: "Hello, Welcome to Bookie App",
   });
 });
+app.get("/hello", (_, res: Response) => {
+  return res.status(StatusCodes.OK).json({
+    success: false,
+    message: "Hello, Welcome to Bookie App",
+  });
+});
 app.use("*", (_, res: Response) => {
   return res.status(StatusCodes.NOT_FOUND).json({
     success: false,
