@@ -7,7 +7,6 @@ import { EntityNotFoundError } from "typeorm";
 import { ResponsePayload } from "./middleware/response";
 import multer from "multer";
 import { AuthorController } from "./controllers/authors.controller";
-const authorController = new AuthorController();
 
 const app: Express = express();
 

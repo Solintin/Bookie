@@ -8,6 +8,8 @@ const migrationRoute = isLocal
   ? "src/**/database/migrations/*.ts"
   : "build/**/database/migrations/*.js";
 
+console.log(isLocal);
+
 export const AppDataSource = new DataSource({
   type: "mysql",
   host: process.env.DB_HOST || "127.0.0.1",
