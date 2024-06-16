@@ -1,6 +1,12 @@
+import { isLocal } from "@/Utils/constant.utils";
 import * as dotenv from "dotenv";
 import { DataSource } from "typeorm";
 dotenv.config();
+
+const entityRoute = isLocal ? "src/**/entities/*.ts" : "build/**/entities/*.js";
+const migrationRoute = isLocal
+  ? "src/**/database/migrations/*.ts"
+  : "build/**/database/migrations/*.js";
 
 export const AppDataSource = new DataSource({
   type: "mysql",
@@ -15,6 +21,6 @@ export const AppDataSource = new DataSource({
     rejectUnauthorized: true,
   },
   subscribers: [],
-  entities: ["build/**/entities/*.js"],
-  migrations: ["build/database/migrations/*.js"],
+  entities: [entityRoute],
+  migrations: [migrationRoute],
 });
