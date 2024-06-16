@@ -1,6 +1,6 @@
-import { isLocal } from "@/Utils/constant.utils";
 import * as dotenv from "dotenv";
 import { DataSource } from "typeorm";
+import { isLocal } from "../Utils/constant.utils";
 dotenv.config();
 
 const entityRoute = isLocal ? "src/**/entities/*.ts" : "build/**/entities/*.js";
