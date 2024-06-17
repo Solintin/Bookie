@@ -26,7 +26,8 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm ci
+          npm install
+          npm test
           npm run build
           # pm2 start
           # sleep 5 # Wait for PM2 to start up
