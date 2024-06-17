@@ -9,10 +9,10 @@
     "start": "NODE_ENV=production node build/index.js",
     "typeorm": "typeorm-ts-node-commonjs -d src/database/data-source.ts",
     "migration:generate": "node scripts/migration-generate.js ",
-    "migration:show": "yarn typeorm migration:show",
+    "migration:show": "npm typeorm migration:show",
     "migration:create": "node scripts/migration-create.js",
-    "migration:run": "yarn typeorm migration:run",
-    "migration:revert": "yarn typeorm migration:revert"
+    "migration:run": "npm typeorm migration:run",
+    "migration:revert": "npm typeorm migration:revert"
   },
   "keywords": [],
   "author": "",

@@ -13,6 +13,6 @@ const migrationPath = `./src/database/migrations/${name}`;
 
 //run the typeorm command
 
-execSync(`yarn typeorm migration:generate ${migrationPath}`, {
+execSync(`npm typeorm migration:generate ${migrationPath}`, {
   studio: "inherit",
 });

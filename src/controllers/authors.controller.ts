@@ -42,13 +42,26 @@ export class AuthorController {
 
     const repo = await AppDataSource.getRepository(Author);
     const author = repo.create(authorData);
-    await repo.save(author);
 
-    return ResponsePayload.sendSuccess(
-      res,
-      "New Author created successfully",
-      author,
-      StatusCodes.OK
-    );
+    try {
+      await repo.save(author);
+
+      return ResponsePayload.sendSuccess(
+        res,
+        "New Author created successfully",
+        author,
+        StatusCodes.OK
+      );
+    } catch (error) {
+      if (error.code === "ER_DUP_ENTRY" || error.errno === 1062) {
+        // Duplicate entry error for MySQL
+        return ResponsePayload.sendError(
+          res,
+          "duplicated data with unique field already exist",
+          author,
+          StatusCodes.BAD_REQUEST
+        );
+      }
+    }
   }
 }
