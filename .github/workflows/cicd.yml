@@ -15,9 +15,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "16.x"
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Install Dependencies
         run: |
-          npm install
+          npm ci
           npm run build
           # pm2 start
           # sleep 5 # Wait for PM2 to start up
