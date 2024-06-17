@@ -18,7 +18,7 @@ app.use("/authors", authorRoute);
 app.get("/", (_, res: Response) => {
   return res.status(StatusCodes.OK).json({
     success: false,
-    message: "Hello, Welcome to Bookie App",
+    message: "Hello, Welcome to Bookie App Homepage",
   });
 });
 app.get("/hello", (_, res: Response) => {
