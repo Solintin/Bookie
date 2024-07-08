@@ -23,7 +23,7 @@ app.get("/", (_, res: Response) => {
 });
 app.get("/hello", (_, res: Response) => {
   return res.status(StatusCodes.OK).json({
-    success: false,
+    success: true,
     message: "Hello, Welcome to Bookie App",
   });
 });

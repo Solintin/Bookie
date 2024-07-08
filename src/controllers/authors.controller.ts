@@ -53,15 +53,43 @@ export class AuthorController {
         StatusCodes.OK
       );
     } catch (error) {
-      if (error.code === "ER_DUP_ENTRY" || error.errno === 1062) {
-        // Duplicate entry error for MySQL
-        return ResponsePayload.sendError(
-          res,
-          "duplicated data with unique field already exist",
-          author,
-          StatusCodes.BAD_REQUEST
-        );
-      }
+      // Duplicate entry error for MySQL
+      return ResponsePayload.sendError(
+        res,
+        error.sqlMessage,
+        author,
+        StatusCodes.BAD_REQUEST
+      );
+    }
+  }
+  async updateAuthor(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    const authorData = req.body;
+
+    authorData.image = req.file?.filename;
+    console.log(authorData);
+
+    const repo = AppDataSource.getRepository(Author);
+    const getSingleAuthor = await repo.findOneByOrFail({ id: Number(id) });
+
+    try {
+      repo.merge(getSingleAuthor, authorData);
+      await repo.save(authorData);
+
+      return ResponsePayload.sendSuccess(
+        res,
+        "Author updated successfully",
+        getSingleAuthor,
+        StatusCodes.OK
+      );
+    } catch (error) {
+      // Duplicate entry error for MySQL
+      return ResponsePayload.sendError(
+        res,
+        error.sqlMessage,
+        getSingleAuthor,
+        StatusCodes.BAD_REQUEST
+      );
     }
   }
 }

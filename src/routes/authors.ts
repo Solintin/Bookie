@@ -13,6 +13,23 @@ authorRoute.get(
   "/:id",
   ErrorHandler.handleError(authorController.getSingleAuthor)
 );
+authorRoute.put(
+  "/:id",
+  [
+    check("name").notEmpty().isString().withMessage("Please enter a name"),
+    check("bio").optional().isString(),
+    check("image")
+      .optional()
+      .custom((_, { req }) => {
+        if (!req.file) {
+          throw new Error("No file uploaded.");
+        }
+        return true;
+      }),
+  ],
+  requestValidator.validate,
+  ErrorHandler.handleError(authorController.updateAuthor)
+);
 authorRoute.post(
   "/",
   FileUploader.upload("image", "authors"),
